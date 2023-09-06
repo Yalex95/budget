@@ -44,6 +44,7 @@ function App() {
       // update
       const updatedSpents = spents.map(spendState => spendState.id === spent.id ? spent: spendState)
       setSpents(updatedSpents)
+      setSpentEdit({})
     } else{
       spent.id = genId()
       spent.date = Date.now()
@@ -54,7 +55,11 @@ function App() {
       setModalIsVisible(false)
     }, 500);
   }
-
+// remove spent
+const removeSpent = id =>{
+  const updatedSpents = spents.filter( spent => spent.id !== id);
+  setSpents(updatedSpents)
+}
   return (
     <div className={modalIsVisible ?  'fijar' : ''}>
     {/* pass budget,spents vars to our child header */}
@@ -75,6 +80,7 @@ function App() {
           <SpentsList
           spents = { spents}
           setSpentEdit = { setSpentEdit}
+          removeSpent = {removeSpent}
           />
         </main>
           <div className="nuevo-gasto">

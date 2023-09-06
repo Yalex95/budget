@@ -19,13 +19,13 @@ import subscriptionsIcon from '../img/icono_suscripciones.svg';
 const Icons = {
             savings : savingIcon,
             food : foodIcon,
-            home : homeIcon,
+            home : homeIcon, 
             spends : spendsIcon,
             health : healthIcon,
             subscriptions : subscriptionsIcon
 }
 
-const Spent = ({spent,setSpentEdit}) => {
+const Spent = ({spent,setSpentEdit,removeSpent}) => {
     const {category, name, amount, id, date} = spent
 
     const leadingActions =()=>(
@@ -40,7 +40,7 @@ const Spent = ({spent,setSpentEdit}) => {
       <TrailingActions>
         <SwipeAction
           destructive={true}
-          onClick={() => console.info('swipe action triggered')}
+          onClick={() => removeSpent(id)}
         >
           Delete
         </SwipeAction>

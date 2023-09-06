@@ -8,7 +8,7 @@ const Modal = ({
   setAnimateModal,
   saveSpent,
   spentEdit,
-  setSpentEdit}) => {
+  setSpentEdit}) => { 
 
 const [message, setMessage] = useState('');
 const [name, setName] = useState('');
@@ -37,6 +37,7 @@ useEffect(() => {
     setAmount('')
     setCategory('')
     setMessage('')
+    setSpentEdit({})
     setTimeout(() => {
       setModalIsVisible(false)
     }, 500);

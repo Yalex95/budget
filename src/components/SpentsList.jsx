@@ -2,7 +2,7 @@ import React from 'react'
 import Spent from './Spent'
 import { genId } from '../helpers'
 
-const SpentsList = ({spents,setSpentEdit}) => {
+const SpentsList = ({spents,setSpentEdit,removeSpent}) => {
   return (
     <div className="listado-gastos contenedor">
         <h2>{spents.length ? 'Spents' : "No spents made"}</h2>
@@ -12,6 +12,7 @@ const SpentsList = ({spents,setSpentEdit}) => {
                 key={spent.id}
                 spent = {spent}
                 setSpentEdit={setSpentEdit}
+                removeSpent ={removeSpent}
                 />
             ))
         }
