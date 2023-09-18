@@ -105,9 +105,8 @@ const removeSpent = id =>{
     <Header
     budget={budget}
     setBudget={setBudget}
-
     spents={spents}
-
+    setSpents={setSpents}
     isValidBudget={isValidBudget}
     setIsValidBudget = { setIsValidBudget}
     />
