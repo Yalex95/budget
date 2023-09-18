@@ -56,7 +56,7 @@ const BudgetControll = ({
                             text={`${percentage}% Spent`} />
         </div>
         <div className="contenido-presupuesto">
-            {/* <button className='reset-app' type='button' onSubmit={handleReset}>Reset App</button> */}
+            <button className='reset-app' type='button' onSubmit={handleReset}>Reset App</button>
             <p>
                 <span>Budget: </span> {formatAmount(budget)}
             </p>
