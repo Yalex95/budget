@@ -7,6 +7,7 @@ import Modal from './components/Modal';
 
 import {genId} from "./helpers"
 import SpentsList from './components/SpentsList';
+import Filter from './components/Filter';
 
 function App() {
   // set state to budget var
@@ -25,6 +26,12 @@ function App() {
 
   // edit spent
   const [spentEdit, setSpentEdit] = useState({});
+
+  // filter state
+  const [filter, setFilter ] = useState('');
+
+  const [filteredSpents, setFilteredSpents] = useState([]);
+
   useEffect(() => {
     if(Object.keys(spentEdit).length > 0){
       
@@ -34,6 +41,15 @@ function App() {
     }, 500);
     }
   }, [spentEdit]);
+
+  useEffect(() => {
+    if(filter){
+      // filter spents by cat
+      const filteredSpents = spents.filter(spent => spent.category === filter);
+      setFilteredSpents(filteredSpents)
+    }
+   
+  }, [filter]);
 //set budget on LS
   useEffect(() => {
     localStorage.setItem('budget',budget ?? 0)
@@ -100,7 +116,13 @@ const removeSpent = id =>{
       isValidBudget && (
         <>
         <main>
+        <Filter
+        filter={filter}
+        setFilter = {setFilter}
+        />
           <SpentsList
+          filter={filter}
+          filteredSpents = {filteredSpents}
           spents = { spents}
           setSpentEdit = { setSpentEdit}
           removeSpent = {removeSpent}
