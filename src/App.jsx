@@ -10,14 +10,18 @@ import SpentsList from './components/SpentsList';
 
 function App() {
   // set state to budget var
-  const [budget, setBudget] = useState(0);
+  const [budget, setBudget] = useState(
+    Number(localStorage.getItem('budget'))?? 0
+    );
   // validate if the budget is validated
   const [isValidBudget, setIsValidBudget] = useState(false);
   // show modal 
   const [modalIsVisible, setModalIsVisible] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
   // spents
-  const [spents, setSpents] = useState([]);
+  const [spents, setSpents] = useState(
+    localStorage.getItem('spents')?JSON.parse(localStorage.getItem('spents')) : []
+    )
 
   // edit spent
   const [spentEdit, setSpentEdit] = useState({});
@@ -30,6 +34,25 @@ function App() {
     }, 500);
     }
   }, [spentEdit]);
+//set budget on LS
+  useEffect(() => {
+    localStorage.setItem('budget',budget ?? 0)
+
+  }, [budget]);
+
+  useEffect(() => {
+    const budgetLS = Number(localStorage.getItem('budget')) ?? 0
+    if(budgetLS >0){
+      setIsValidBudget(true)
+    }
+  }, []);
+  // set spents on local storage
+  useEffect(() => {
+    localStorage.setItem('spents', JSON.stringify(spents) ?? [])
+  }, [spents]);
+
+
+
 
   const handleNewSpend = () =>{
     setModalIsVisible(true)
